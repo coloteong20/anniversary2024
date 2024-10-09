@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sequential Popup Page</title>
+    <title>anniversary 2024 for clauremy❤️</title>
     <style>
         body {
             text-align: center;
@@ -17,6 +17,7 @@
             width: 100px;
             height: 100px;
             margin: 10px;
+            display: none; /* Hide images initially */
         }
     </style>
 </head>
@@ -41,11 +42,36 @@
         <button class="popupBtn" id="popupBtn6" style="display:none;">I love you bb! And cant wait to see u soon hoho #sniff </button>
     </div>
 
+    <!-- Gallery of Images -->
     <div id="gallery">
         <img src="photos/photo_1.jpg" alt="Photo 1">
         <img src="photos/photo_2.jpg" alt="Photo 2">
         <img src="photos/photo_3.jpg" alt="Photo 3">
-        <!-- Add more images here -->
+        <img src="photos/photo_4.jpg" alt="Photo 4">
+        <img src="photos/photo_5.jpg" alt="Photo 5">
+        <img src="photos/photo_6.jpg" alt="Photo 6">
+        <img src="photos/photo_7.jpg" alt="Photo 7">
+        <img src="photos/photo_8.jpg" alt="Photo 8">
+        <img src="photos/photo_9.jpg" alt="Photo 9">
+        <img src="photos/photo_10.jpg" alt="Photo 10">
+        <img src="photos/photo_11.jpg" alt="Photo 11">
+        <img src="photos/photo_12.jpg" alt="Photo 12">
+        <img src="photos/photo_13.jpg" alt="Photo 13">
+        <img src="photos/photo_14.jpg" alt="Photo 14">
+        <img src="photos/photo_15.jpg" alt="Photo 15">
+        <img src="photos/photo_16.jpg" alt="Photo 16">
+        <img src="photos/photo_17.jpg" alt="Photo 17">
+        <img src="photos/photo_18.jpg" alt="Photo 18">
+        <img src="photos/photo_19.jpg" alt="Photo 19">
+        <img src="photos/photo_20.jpg" alt="Photo 20">
+        <img src="photos/photo_21.jpg" alt="Photo 21">
+        <img src="photos/photo_22.jpg" alt="Photo 22">
+        <img src="photos/photo_23.jpg" alt="Photo 23">
+        <img src="photos/photo_24.jpg" alt="Photo 24">
+        <img src="photos/photo_25.jpg" alt="Photo 25">
+        <img src="photos/photo_26.jpg" alt="Photo 26">
+        <img src="photos/photo_27.jpg" alt="Photo 27">
+        <img src="photos/photo_28.jpg" alt="Photo 28">
     </div>
 
     <script>
@@ -77,7 +103,9 @@
 
         // Popup button functionality for sequential appearance
         let clickCount = 0;
-        const maxClicks = 5;  // Number of popups before showing the gallery
+        const maxClicks = 6;  // Number of popups before showing the gallery
+        const imageRevealCount = 3;  // Number of images revealed per popup click
+        const imageRevealDelay = 500;  // Delay in milliseconds between each image reveal
 
         function showNextButton(currentButtonId, nextButtonId) {
             document.getElementById(currentButtonId).addEventListener('click', () => {
@@ -85,10 +113,8 @@
                 document.getElementById(currentButtonId).style.display = 'none';
                 if (clickCount < maxClicks) {
                     document.getElementById(nextButtonId).style.display = 'block';
-                } else {
-                    alert('No more popups! Enjoy the photos.');
-                    gallery.style.display = 'block';  // Show the photo gallery
                 }
+                revealImages(imageRevealCount);
             });
         }
 
@@ -100,6 +126,18 @@
         showNextButton('popupBtn5', 'popupBtn6');
         showNextButton('popupBtn6', 'gallery');  // Last button will show the gallery
 
+        // Function to reveal images with a delay
+        let imageIndex = 0;
+        const images = document.querySelectorAll('#gallery img');
+
+        function revealImages(count) {
+            for (let i = 0; i < count && imageIndex < images.length; i++) {
+                setTimeout(() => {
+                    images[imageIndex].style.display = 'block';
+                    imageIndex++;
+                }, i * imageRevealDelay);  // Delay between each image
+            }
+        }
     </script>
 </body>
 </html>
