@@ -9,7 +9,7 @@
             text-align: center;
             padding: 50px;
         }
-        #gallery {
+        #gallery, .popup-buttons, #errorMessage {
             display: none;
             margin-top: 20px;
         }
@@ -21,31 +21,77 @@
     </style>
 </head>
 <body>
-    <h1>Welcome!</h1>
-    <button id="popupBtn">Click me</button>
+    <h1>Hello bb ❤️</h1>
+
+    <!-- Date picker for password -->
+    <div id="passwordSection">
+        <label for="passwordDate">Please select the special date to proceed:</label><br><br>
+        <input type="date" id="passwordDate">
+        <button id="checkPassword">Submit</button>
+        <p id="errorMessage" style="color: red;">Incorrect date. Try again.</p>
+    </div>
+
+    <!-- Popup buttons -->
+    <div class="popup-buttons">
+        <button class="popupBtn">Thank you for 3 great years together muacks</button>
+        <button class="popupBtn">Looking forward to super many more years together with u 🥰</button>
+        <button class="popupBtn">You are super amazing and u make my life so much better!</button>
+        <button class="popupBtn">I hope that u know u can always count on me as much as I rely on u too :P </button>
+        <button class="popupBtn">Sorry for the lousy (none) UI btw I lost my github account so I dun have previous code to copy 😭 </button>
+        <button class="popupBtn">I love you bb! And cant wait to see u soon hoho #sniff </button>
+    </div>
 
     <div id="gallery">
-        <img src="photo1.jpg" alt="Photo 1">
-        <img src="photo2.jpg" alt="Photo 2">
-        <img src="photo3.jpg" alt="Photo 3">
-        <!-- Add more photos as needed -->
+        <img src="photos/photo_1.jpg" alt="Photo 1">
+        <img src="photos/photo_2.jpg" alt="Photo 2">
+        <img src="photos/photo_3.jpg" alt="Photo 3">
+        <!-- Add more images here -->
     </div>
 
     <script>
+        // Predefined correct password date (in yyyy-mm-dd format)
+        const correctPassword = '2024-10-15';  // Replace this with your special date
+
+        // Access elements
+        const passwordSection = document.getElementById('passwordSection');
+        const popupButtons = document.querySelector('.popup-buttons');
+        const gallery = document.getElementById('gallery');
+        const passwordDateInput = document.getElementById('passwordDate');
+        const checkPasswordButton = document.getElementById('checkPassword');
+        const errorMessage = document.getElementById('errorMessage');
+
+        // Hide error message initially
+        errorMessage.style.display = 'none';
+
+        // Check password
+        checkPasswordButton.addEventListener('click', () => {
+            const enteredDate = passwordDateInput.value;
+
+            if (enteredDate === correctPassword) {
+                // Correct date entered, show the buttons and hide the password section
+                passwordSection.style.display = 'none';
+                popupButtons.style.display = 'block';
+            } else {
+                errorMessage.style.display = 'block';
+            }
+        });
+
+        // Popup button functionality
         let clickCount = 0;
         const maxClicks = 5;  // Number of popups before showing the gallery
-        const button = document.getElementById('popupBtn');
-        const gallery = document.getElementById('gallery');
+        const popupBtnList = document.querySelectorAll('.popupBtn');
 
-        button.addEventListener('click', () => {
-            if (clickCount < maxClicks) {
-                alert('Hello! This is popup ' + (clickCount + 1));
-                clickCount++;
-            } else {
-                alert('No more popups! Enjoy the photos.');
-                gallery.style.display = 'block';  // Show the photo gallery
-                button.style.display = 'none';    // Hide the button
-            }
+        popupBtnList.forEach(button => {
+            button.addEventListener('click', () => {
+                if (clickCount < maxClicks) {
+                    alert('Hello! This is popup ' + (clickCount + 1));
+                    clickCount++;
+                } else {
+                    alert('No more popups! Enjoy the photos.');
+                    gallery.style.display = 'block';  // Show the photo gallery
+                    button.style.display = 'none';    // Hide the buttons
+                }
+            });
         });
     </script>
 </body>
