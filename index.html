@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Popup Page</title>
+    <title>Sequential Popup Page</title>
     <style>
         body {
             text-align: center;
             padding: 50px;
         }
-        #gallery, .popup-buttons, #errorMessage {
+        #gallery, #errorMessage {
             display: none;
             margin-top: 20px;
         }
@@ -31,14 +31,14 @@
         <p id="errorMessage" style="color: red;">Incorrect date. Try again.</p>
     </div>
 
-    <!-- Popup buttons -->
+    <!-- Popup buttons (only one shown at a time) -->
     <div class="popup-buttons">
-        <button class="popupBtn">Thank you for 3 great years together muacks</button>
-        <button class="popupBtn">Looking forward to super many more years together with u 🥰</button>
-        <button class="popupBtn">You are super amazing and u make my life so much better!</button>
-        <button class="popupBtn">I hope that u know u can always count on me as much as I rely on u too :P </button>
-        <button class="popupBtn">Sorry for the lousy (none) UI btw I lost my github account so I dun have previous code to copy 😭 </button>
-        <button class="popupBtn">I love you bb! And cant wait to see u soon hoho #sniff </button>
+        <button class="popupBtn" id="popupBtn1" style="display:none;">Thank you for 3 great years together muacks</button>
+        <button class="popupBtn" id="popupBtn2" style="display:none;">Looking forward to super many more years together with u 🥰</button>
+        <button class="popupBtn" id="popupBtn3" style="display:none;">You are super amazing and u make my life so much better!</button>
+        <button class="popupBtn" id="popupBtn4" style="display:none;">I hope that u know u can always count on me as much as I rely on u too :P </button>
+        <button class="popupBtn" id="popupBtn5" style="display:none;">Sorry for the lousy (none) UI btw I lost my github account so I dun have previous code to copy 😭 </button>
+        <button class="popupBtn" id="popupBtn6" style="display:none;">I love you bb! And cant wait to see u soon hoho #sniff </button>
     </div>
 
     <div id="gallery">
@@ -50,11 +50,10 @@
 
     <script>
         // Predefined correct password date (in yyyy-mm-dd format)
-        const correctPassword = '2024-10-15';  // Replace this with your special date
+        const correctPassword = '2021-10-07';  // Replace this with your special date
 
         // Access elements
         const passwordSection = document.getElementById('passwordSection');
-        const popupButtons = document.querySelector('.popup-buttons');
         const gallery = document.getElementById('gallery');
         const passwordDateInput = document.getElementById('passwordDate');
         const checkPasswordButton = document.getElementById('checkPassword');
@@ -68,31 +67,39 @@
             const enteredDate = passwordDateInput.value;
 
             if (enteredDate === correctPassword) {
-                // Correct date entered, show the buttons and hide the password section
+                // Correct date entered, hide the password section, and show the first button
                 passwordSection.style.display = 'none';
-                popupButtons.style.display = 'block';
+                document.getElementById('popupBtn1').style.display = 'block';
             } else {
                 errorMessage.style.display = 'block';
             }
         });
 
-        // Popup button functionality
+        // Popup button functionality for sequential appearance
         let clickCount = 0;
         const maxClicks = 5;  // Number of popups before showing the gallery
-        const popupBtnList = document.querySelectorAll('.popupBtn');
 
-        popupBtnList.forEach(button => {
-            button.addEventListener('click', () => {
+        function showNextButton(currentButtonId, nextButtonId) {
+            document.getElementById(currentButtonId).addEventListener('click', () => {
+                clickCount++;
+                document.getElementById(currentButtonId).style.display = 'none';
                 if (clickCount < maxClicks) {
-                    alert('Hello! This is popup ' + (clickCount + 1));
-                    clickCount++;
+                    document.getElementById(nextButtonId).style.display = 'block';
                 } else {
                     alert('No more popups! Enjoy the photos.');
                     gallery.style.display = 'block';  // Show the photo gallery
-                    button.style.display = 'none';    // Hide the buttons
                 }
             });
-        });
+        }
+
+        // Setup sequential button clicks
+        showNextButton('popupBtn1', 'popupBtn2');
+        showNextButton('popupBtn2', 'popupBtn3');
+        showNextButton('popupBtn3', 'popupBtn4');
+        showNextButton('popupBtn4', 'popupBtn5');
+        showNextButton('popupBtn5', 'popupBtn6');
+        showNextButton('popupBtn6', 'gallery');  // Last button will show the gallery
+
     </script>
 </body>
 </html>
