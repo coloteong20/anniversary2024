@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popup Page</title>
+    <style>
+        body {
+            text-align: center;
+            padding: 50px;
+        }
+        #gallery {
+            display: none;
+            margin-top: 20px;
+        }
+        img {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome!</h1>
+    <button id="popupBtn">Click me</button>
+
+    <div id="gallery">
+        <img src="photo1.jpg" alt="Photo 1">
+        <img src="photo2.jpg" alt="Photo 2">
+        <img src="photo3.jpg" alt="Photo 3">
+        <!-- Add more photos as needed -->
+    </div>
+
+    <script>
+        let clickCount = 0;
+        const maxClicks = 5;  // Number of popups before showing the gallery
+        const button = document.getElementById('popupBtn');
+        const gallery = document.getElementById('gallery');
+
+        button.addEventListener('click', () => {
+            if (clickCount < maxClicks) {
+                alert('Hello! This is popup ' + (clickCount + 1));
+                clickCount++;
+            } else {
+                alert('No more popups! Enjoy the photos.');
+                gallery.style.display = 'block';  // Show the photo gallery
+                button.style.display = 'none';    // Hide the button
+            }
+        });
+    </script>
+</body>
+</html>
