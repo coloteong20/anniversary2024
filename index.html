@@ -9,15 +9,38 @@
             text-align: center;
             padding: 50px;
         }
-        #gallery, #errorMessage {
-            display: none;
+
+        #passwordSection {
+            margin-bottom: 20px;
+        }
+
+        .popup-buttons, #gallery {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             margin-top: 20px;
         }
+
+        button {
+            margin: 10px 0;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        #gallery {
+            margin-top: 20px;
+        }
+
         img {
             width: 100px;
             height: 100px;
             margin: 10px;
             display: none; /* Hide images initially */
+        }
+
+        #errorMessage {
+            color: red;
         }
     </style>
 </head>
@@ -29,7 +52,7 @@
         <label for="passwordDate">Please select the special date to proceed:</label><br><br>
         <input type="date" id="passwordDate">
         <button id="checkPassword">Submit</button>
-        <p id="errorMessage" style="color: red;">Incorrect date. Try again.</p>
+        <p id="errorMessage">Incorrect date. Try again.</p>
     </div>
 
     <!-- Popup buttons (only one shown at a time) -->
@@ -104,7 +127,7 @@
         // Popup button functionality for sequential appearance
         let clickCount = 0;
         const maxClicks = 6;  // Number of popups before showing the gallery
-        const imageRevealCount = 3;  // Number of images revealed per popup click
+        const imageRevealCount = 4;  // Number of images revealed per popup click
         const imageRevealDelay = 500;  // Delay in milliseconds between each image reveal
 
         function showNextButton(currentButtonId, nextButtonId) {
