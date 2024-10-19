@@ -8,6 +8,17 @@
         body {
             text-align: center;
             padding: 50px;
+            background-image: url('images/photo_12.jpg'); /* Replace with your image path */
+            background-size: cover;  /* Ensure the image covers the whole screen */
+            background-position: center;  /* Center the background image */
+            background-repeat: no-repeat;  /* Prevent the image from repeating */
+            background-attachment: fixed;  /* Make the background image stay fixed on scroll */
+            color: white; /* Ensure text is visible on darker backgrounds */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Make the body take full screen height */
         }
 
         #passwordSection {
@@ -26,6 +37,10 @@
             padding: 10px 20px;
             font-size: 18px;
             cursor: pointer;
+            background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent background for the buttons */
+            border: none;
+            border-radius: 5px;
+            color: white;
         }
 
         #gallery {
